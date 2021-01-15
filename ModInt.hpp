@@ -1,3 +1,5 @@
+//compile with -lgmpxx -lgmp flag
+
 //Header
 #ifndef INTEGER_ARITHMETICS_HEADER
 #define INTEGER_ARITHMETICS_HEADER
@@ -5,7 +7,9 @@
 #include<cmath>
 #include<climits>
 #include<iostream>
-#include"BigInteger.hpp"
+#include <gmp.h>
+#include <gmpxx.h>
+//#include"BigInteger.hpp"
 
 
 template <int N>

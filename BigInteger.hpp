@@ -4,12 +4,16 @@
 #include<iostream>
 #include<string>
 #include<cmath>
+#include<cstdlib>
 
 template<int N>
 class BigInteger {
 	public:
 		constexpr int size() {return N*sizeof(int);}
-		
+		static struct div_bigt {
+			BigInteger quot;
+			BigInteger rem;
+		}
 		//Constructors
 		BigInteger() : negative(false), filled(0), data(std::make_unique<unsigned int[]>(N)) {for (int i=0;i<N;i++) data[i]=0; }
 		BigInteger(const BigInteger& other) : negative(other.negative), filled(other.filled) {
@@ -28,6 +32,7 @@ class BigInteger {
 		BigInteger operator+(const BigInteger& other);
 		BigInteger operator-(const BigInteger& other);
 		BigInteger operator*(const BigInteger& other);
+		BigInteger div(const BigInteger& other);
 		BigInteger operator%(const BigInteger& other); //*this % other //missing wirklich nötig?
 		BigInteger operator<<(const int& amount);
 		BigInteger operator>>(const int& amount);
@@ -55,6 +60,8 @@ class BigInteger {
 		bool negative;
 		int filled;
 		std::unique_ptr<unsigned int[]> data;
+		void shiftLeft(const int& amount);
+		void shiftRight(const int& amount);
 		unsigned int get(int pos) const {return data[pos];}
 		void set(int pos, unsigned int value) {data[pos] = value;}
 };

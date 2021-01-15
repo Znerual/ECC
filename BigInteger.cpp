@@ -149,6 +149,33 @@ BigInteger<N> BigInteger<N>::operator*(const BigInteger<N>& other) {
 	return result;
 }
 
+//Helper for the division
+template<int N>
+void BigInteger<N>::shiftLeft(const int& amount) {
+	if (filled == N) throw "Overflow!";
+	for (int i = filled - 1; i >= 0; i--) {
+		data[i+1] = data[i];
+	}
+	filled += 1;
+}
+template<int N>
+void BigInteger<N>::shiftRight(const int& amount) {
+	for (int i = 0; i < filled; i++) {
+		data[i] = data[i+1];
+	}
+	filled = filled > 0 ? filled - 1: 0;
+}
+		
+		
+template<int N>
+BigInteger::div_bigt BigInteger<N>::div(const BigInteger& other) {
+	div_bigt result;
+	result.quot = BigInteger();
+	result.rem = BigInteger();
+	
+	
+}
+
 template<int N>
 BigInteger<N>& BigInteger<N>::operator=(const BigInteger& other) {
 	negative = other.negative;
